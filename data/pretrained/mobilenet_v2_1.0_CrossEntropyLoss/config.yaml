@@ -1,0 +1,38 @@
+train_data:
+  - "/root/autodl-tmp/facemask-train1/crops"
+  - "/root/autodl-tmp/facemask-train12/crops"
+  - "/root/autodl-tmp/facemask-train3/crops"
+  - "/root/autodl-tmp/synthetic-train1/crops"
+  - "/root/autodl-tmp/synthetic-train2/crops"
+test_data: "/root/autodl-tmp/facemask-test/crops"
+class_name: "data/face-mask/class_name.txt"
+#train_data: './data/face-mask/train'
+#test_data: './data/face-mask/test'
+#class_name: './data/face-mask/class_name.txt'
+train_transform: "train"
+test_transform: "val"
+resample: True
+work_dir: "work_space/"
+net_type: "mobilenet_v2" # resnet18,mobilenet_v2,googlenet
+width_mult: 1.0
+input_size: [ 128,128 ]
+rgb_mean: [ 0.5, 0.5, 0.5 ]  # for normalize inputs to [-1, 1],Sequence of means for each channel.
+rgb_std: [ 0.5, 0.5, 0.5 ]   # for normalize,Sequence of standard deviations for each channel.
+batch_size: 64
+lr: 0.01
+optim_type: "SGD"             # SGD,Adam
+loss_type: "CrossEntropyLoss"  # CrossEntropyLoss,LabelSmoothing
+momentum: 0.9              # SGD momentum
+num_epochs: 100
+num_warn_up: 3
+num_workers: 8
+weight_decay: 0.0005 #5e-4
+scheduler: "multi-step" # cosine,multi-step
+milestones: [ 20,50,80 ]
+gpu_id: [ 0 ]
+log_freq: 50
+progress: True
+
+finetune: False
+pretrained: True
+model_file: ""
